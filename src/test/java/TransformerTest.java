@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -11,26 +10,39 @@ public class TransformerTest {
     PlainTextTransformer transformer = new PlainTextTransformer();
 
     @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3", "4"})
-    void testWithColonSymbol(String number) {
+    @ValueSource(ints = {1, 2, 3, 4})
+    void testWithColonSymbol(int number) {
         // Given
         String input = "1:2:3:4:";
 
         // When
-        List<String> transformed = transformer.transform(input);
+        List<Integer> transformed = transformer.transform(input);
 
         // Then
         assertThat(transformed.contains(number)).isTrue();
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3"})
-    void testWithCustomSymbol(String number) {
+    @ValueSource(ints = {1, 2, 3})
+    void testWithCustomSymbol(int number) {
         // Given
         String input = "//;\n1;2;3";
 
         // When
-        List<String> transformed = transformer.transform(input);
+        List<Integer> transformed = transformer.transform(input);
+
+        // Then
+        assertThat(transformed.contains(number)).isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void testWithMultiDelimeter(int number) {
+        // Given
+        String input = "1,2:3";
+
+        // When
+        List<Integer> transformed = transformer.transform(input);
 
         // Then
         assertThat(transformed.contains(number)).isTrue();

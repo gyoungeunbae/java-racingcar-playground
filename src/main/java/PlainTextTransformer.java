@@ -10,6 +10,7 @@ public class PlainTextTransformer {
         if (input.contains("//") && input.contains("\n")) {
             String decimal = String.valueOf(input.charAt((input.indexOf("\n")-1)));
             input = input.replaceAll("//","").replaceAll("\n", "").replaceAll(decimal, "");
+            // check input
             splitted = input.split("");
             return Arrays.stream(splitted).map(Integer::valueOf).collect(Collectors.toList());
         }

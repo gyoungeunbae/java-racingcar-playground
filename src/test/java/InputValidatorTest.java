@@ -17,4 +17,28 @@ public class InputValidatorTest {
         // Then
         Assertions.assertFalse(isValid);
     }
+
+    @Test
+    void testWithInput() {
+        // Given
+        String input = "123-4";
+
+        // When & Then
+        Assertions.assertThrows(
+                NumberFormatException.class, () -> {
+                    inputValidator.checkInput(input);
+                });
+    }
+
+    @Test
+    void testWithString() {
+        // Given
+        String input = "5김64";
+
+        // When & Then
+        Assertions.assertThrows(
+                NumberFormatException.class, () -> {
+                    inputValidator.checkInput(input);
+                });
+    }
 }

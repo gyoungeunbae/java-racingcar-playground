@@ -2,9 +2,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-public class InputValidatorTest {
+public class InputManagerCheckInputTest {
 
-    InputValidator inputValidator = new InputValidator();
+    InputManager inputValidator = new InputManager();
 
     @Test
     void test() {

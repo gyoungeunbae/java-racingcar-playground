@@ -10,10 +10,9 @@ public class PlainTextTransformer {
     List<Integer> transform(String input) {
         String[] splitted = {};
         InputType inputType = inputManager.getInputType(input);
-
         if (inputType.equals(InputType.CUSTOM)) {
             String delimeter = inputManager.getDelimeter(input);
-            input = input.replaceAll("//","").replaceAll("\n", "").replaceAll(delimeter, "");
+            input = input.replaceAll("//","").replaceAll("\\\\n", "").replaceAll(delimeter, "");
             splitted = input.split("");
             return Arrays.stream(splitted).map(Integer::valueOf).collect(Collectors.toList());
         }

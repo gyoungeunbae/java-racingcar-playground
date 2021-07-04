@@ -12,16 +12,16 @@ public class InputManagerCheckInputTest {
         String input = "";
 
         // When
-        boolean isValid = inputValidator.checkInput(input);
+        boolean isEmpty = inputValidator.checkInput(input);
 
         // Then
-        Assertions.assertFalse(isValid);
+        Assertions.assertTrue(isEmpty);
     }
 
     @Test
     void testWithInput() {
         // Given
-        String input = "123-4";
+        String input = "1:2:3:-4";
 
         // When & Then
         Assertions.assertThrows(
@@ -33,7 +33,7 @@ public class InputManagerCheckInputTest {
     @Test
     void testWithString() {
         // Given
-        String input = "5김64";
+        String input = "5,김,6,4";
 
         // When & Then
         Assertions.assertThrows(

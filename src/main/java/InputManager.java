@@ -1,30 +1,41 @@
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class InputManager {
 
-    private boolean checkEmpty(String input) {
+    private boolean isEmpty(String input) {
         if (input.isEmpty() || input.equals("")) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public boolean checkInput(String input) {
-        boolean result = false;
-        result = checkEmpty(input);
-
-        for (int i=0;i<input.length();i++) {
-            try {
-                char element = input.charAt(i);
-                Integer.parseInt(String.valueOf(element));
-            } catch (RuntimeException e) {
-                throw e;
+        boolean isEmpty = isEmpty(input);
+        if (! isEmpty) {
+            String delimeter = this.getDelimeter(input);
+            for (int i = 0; i < input.length(); i++) {
+                try {
+                    String element = String.valueOf(input.charAt(i));
+                    if (!element.equals(delimeter) && !element.equals("\\") && !element.equals("n") && !element.equals("/")) {
+                        Integer.parseInt(element);
+                    } else {
+                        continue;
+                    }
+                } catch (RuntimeException e) {
+                    throw e;
+                }
             }
+            isEmpty = true;
         }
-        return result;
+        return isEmpty;
     }
 
     public InputType getInputType(String input) {
-        if (input.contains("//") && input.contains("\n")) {
+        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+        boolean test = matcher.find();
+        if (matcher.matches()) {
             return InputType.CUSTOM;
         }
 
@@ -41,6 +52,14 @@ public class InputManager {
     }
 
     public String getDelimeter(String input) {
-        return String.valueOf(input.charAt((input.indexOf("\n")-1)));
+        InputType inputType = this.getInputType(input);
+        if (inputType.equals(InputType.CUSTOM)) {
+            return String.valueOf(input.charAt((input.indexOf("/")+2)));
+        } else if (inputType.equals(InputType.COLON)) {
+            return ":";
+        } else if (inputType.equals(InputType.COMMA)) {
+            return ",";
+        }
+        return null;
     }
 }

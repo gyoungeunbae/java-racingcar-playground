@@ -18,7 +18,6 @@ public class InputManager {
         return true;
     }
 
-
     public List<String> transformer(String input) {
         return Arrays.asList(input.split(","));
     }

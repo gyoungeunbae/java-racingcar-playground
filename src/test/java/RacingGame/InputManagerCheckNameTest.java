@@ -13,7 +13,7 @@ public class InputManagerCheckNameTest {
         String input = "abcddd";
 
         // When
-        boolean result = inputManager.checkName(inputManager.transformer(input));
+        boolean result = inputManager.checkName(input);
 
         // Then
         Assertions.assertFalse(result);
@@ -25,7 +25,7 @@ public class InputManagerCheckNameTest {
         String input = "";
 
         // When
-        boolean result = inputManager.checkName(inputManager.transformer(input));
+        boolean result = inputManager.checkName(input);
 
         // Then
         Assertions.assertFalse(result);
@@ -37,7 +37,7 @@ public class InputManagerCheckNameTest {
         String input = "apple";
 
         // When
-        boolean result = inputManager.checkName(inputManager.transformer(input));
+        boolean result = inputManager.checkName(input);
 
         // Then
         Assertions.assertTrue(result);

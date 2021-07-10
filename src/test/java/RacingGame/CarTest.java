@@ -9,13 +9,11 @@ public class CarTest {
     void test() {
         // Given
         String name = "name1";
-        int speed = 3;
 
         // When
-        Car car = new Car(name, speed);
+        Car car = new Car(name);
 
         // Then
         Assertions.assertEquals(car.name, name);
-        Assertions.assertEquals(car.speed, speed);
     }
 }

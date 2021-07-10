@@ -5,15 +5,13 @@ import java.util.List;
 
 public class InputManager {
 
-    public boolean checkName(List<String> elements) {
-        for (String element : elements) {
-            if (element.length() == 0 | element.isEmpty()) {
-                return false;
-            }
+    public boolean checkName(String name) {
+        if (name.length() == 0 | name.isEmpty()) {
+            return false;
+        }
 
-            if (element.length() > 5) {
-                return false;
-            }
+        if (name.length() > 5) {
+            return false;
         }
         return true;
     }
